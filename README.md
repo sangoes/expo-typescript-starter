@@ -20,5 +20,5 @@
 
 ### TODO
 
-    1.升级react-native-gesture-handler react-navigation react-navigation-stack
+    1.升级react-native-gesture-handler react-navigation react-navigation-stack (版本冲突报错找不到stack )
     2.yarn web 找不到@/

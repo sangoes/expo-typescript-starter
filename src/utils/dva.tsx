@@ -1,9 +1,44 @@
-import React from "react";
-import { Provider, connect } from "react-redux";
-import { Reducer, Action, ReducersMapObject, Dispatch } from "redux";
-import createLoading from "dva-loading";
-let { create } = require("dva-core");
+import React from 'react';
+import { Provider, connect } from 'react-redux';
+import { Reducer, Action, ReducersMapObject, Dispatch } from 'redux';
+import createLoading from 'dva-loading';
+import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper';
+let { create } = require('dva-core');
 export { connect };
+
+// 字体
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+};
+// 主题
+const theme = {
+  ...DefaultTheme,
+  // 圆角
+  roundness: 0,
+  // 颜色
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#2345ff',
+  },
+  // fonts: configureFonts(fontConfig),
+};
 
 export interface EffectsCommandMap {
   put: <A extends Action>(action: A) => any;
@@ -23,16 +58,10 @@ export interface SubscriptionAPI {
   dispatch: Dispatch<any>;
 }
 export type ActionWithPayload = { action: Action; payload: any };
-export type EffectType = "takeEvery" | "takeLatest" | "watcher" | "throttle";
+export type EffectType = 'takeEvery' | 'takeLatest' | 'watcher' | 'throttle';
 export type EffectWithType = [Effect, { type: EffectType }];
-export type Effect = (
-  action: ActionWithPayload,
-  effects: EffectsCommandMap
-) => void;
-export type ReducersMapObjectWithEnhancer = [
-  ReducersMapObject,
-  ReducerEnhancer
-];
+export type Effect = (action: ActionWithPayload, effects: EffectsCommandMap) => void;
+export type ReducersMapObjectWithEnhancer = [ReducersMapObject, ReducerEnhancer];
 export type Subscription = (api: SubscriptionAPI, done: Function) => void;
 export interface SubscriptionsMapObject {
   [key: string]: Subscription;
@@ -78,7 +107,9 @@ export function dva(options: Options) {
   app.start();
   const store = app._store;
   app.start = (container: any) => () => (
-    <Provider store={store}>{container}</Provider>
+    <Provider store={store}>
+      <PaperProvider theme={theme}>{container}</PaperProvider>
+    </Provider>
   );
   app.getStore = () => store;
   return app;
