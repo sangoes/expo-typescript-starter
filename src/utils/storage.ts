@@ -1,5 +1,5 @@
-import { aesDecode, aesEncode } from "./tools";
-import { AsyncStorage } from "react-native";
+import { aesDecode, aesEncode } from './tools';
+import { AsyncStorage } from 'react-native';
 
 /**
  *  提前3分钟过期token
@@ -17,6 +17,7 @@ export interface IStorageItem {
   time: Date;
   expire: number;
 }
+
 /**
  * @description 存储
  * @author 驷爺.JC
@@ -36,7 +37,7 @@ export default class Storage {
     const obj = {
       data: value,
       time: Date.now(),
-      expire: expire || 0
+      expire: expire || 0,
     };
     // 保存
     return AsyncStorage.setItem(key, aesEncode(JSON.stringify(obj)));
@@ -48,7 +49,7 @@ export default class Storage {
    */
   public static getItem = (key: string) => {
     return AsyncStorage.getItem(key).then(val =>
-      val !== null ? JSON.parse(aesDecode(val)).data : null
+      val !== null ? JSON.parse(aesDecode(val)).data : null,
     );
   };
 
@@ -74,9 +75,7 @@ export default class Storage {
     return AsyncStorage.getItem(key)
       .then(val => JSON.parse(aesDecode(val)))
       .then(val =>
-        val.expire > 0 && Date.now() - val.time + shiftTime > val.expire
-          ? true
-          : false
+        val.expire > 0 && Date.now() - val.time + shiftTime > val.expire ? true : false,
       );
   };
 }
