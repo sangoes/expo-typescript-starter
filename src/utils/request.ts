@@ -113,6 +113,5 @@ export default async function request(url: any, option?: any) {
         return;
       }
       // 显示
-      // ToastAndroid.show(msg, ToastAndroid.SHORT);
     });
 }
