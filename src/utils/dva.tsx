@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider, connect } from 'react-redux';
 import { Reducer, Action, ReducersMapObject, Dispatch } from 'redux';
 import createLoading from 'dva-loading';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper';
 
 let { create } = require('dva-core');
 export { connect };
@@ -61,15 +61,39 @@ export interface Options {
 }
 
 /**
+ * 字体配置
+ */
+const fontConfig: any = {
+  default: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+};
+
+/**
  * 主题
  */
 const theme = {
   ...DefaultTheme,
-  roundness: 2,
   colors: {
     ...DefaultTheme.colors,
     primary: '#f1c40f',
   },
+  fonts: configureFonts(fontConfig),
 };
 
 /**
