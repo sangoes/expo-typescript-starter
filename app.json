@@ -13,10 +13,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sangoes.ets"
+      "bundleIdentifier": "com.sangoes.expo"
     },
     "android": {
-      "package": "com.sangoes.ets"
+      "package": "com.sangoes.expo"
     },
     "description": "expo typescript starter"
   }

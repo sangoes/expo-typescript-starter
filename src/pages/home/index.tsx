@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View } from 'react-native';
 import styles from '@/styles/home';
+import { Button, Text } from 'react-native-paper';
 
 export interface IHomePageProps {}
 
@@ -16,7 +17,9 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
     return (
       <View style={styles.container}>
         <Text>home view</Text>
-        <Button title="按钮" onPress={() => console.log('Pressed')} />
+        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
+          Press me
+        </Button>
       </View>
     );
   }

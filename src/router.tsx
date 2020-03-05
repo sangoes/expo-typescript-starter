@@ -17,7 +17,9 @@ const HomeNavigator = createStackNavigator(
     // 首页
     HomePage: {
       screen: HomePage,
-      navigationOptions: () => ({}),
+      navigationOptions: () => ({
+        title: '首页',
+      }),
     },
   },
   {
@@ -34,7 +36,9 @@ const MeNavigator = createStackNavigator(
     // 个人中心
     MePage: {
       screen: MePage,
-      navigationOptions: () => ({}),
+      navigationOptions: () => ({
+        title: '我',
+      }),
     },
   },
   {

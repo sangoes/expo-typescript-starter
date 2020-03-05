@@ -1,7 +1,7 @@
 import React from 'react';
 import { dva } from './utils/dva';
 import Router from './router';
-import * as models from '@/models';
+import * as models from './models';
 
 /**
  * dva

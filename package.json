@@ -1,5 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "version": "1.0.0",
+  "description": "expo typescript starter",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

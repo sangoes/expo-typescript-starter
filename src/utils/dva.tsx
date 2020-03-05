@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider, connect } from 'react-redux';
 import { Reducer, Action, ReducersMapObject, Dispatch } from 'redux';
 import createLoading from 'dva-loading';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 let { create } = require('dva-core');
 export { connect };
@@ -58,6 +59,19 @@ export interface Options {
   onError: (e: any) => void;
   onAction: any[];
 }
+
+/**
+ * 主题
+ */
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#f1c40f',
+  },
+};
+
 /**
  * @description dva
  * @author jerrychir
@@ -72,7 +86,11 @@ export function dva(options: Options) {
   // global.registered = true;
   app.start();
   const store = app._store;
-  app.start = (container: any) => () => <Provider store={store}>{container}</Provider>;
+  app.start = (container: any) => () => (
+    <Provider store={store}>
+      <PaperProvider theme={theme}>{container}</PaperProvider>
+    </Provider>
+  );
   app.getStore = () => store;
   return app;
 }
