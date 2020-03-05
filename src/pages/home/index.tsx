@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import styles from '@/styles/home';
 
 export interface IHomePageProps {}
 
@@ -20,12 +21,3 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

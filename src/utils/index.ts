@@ -1,4 +1,4 @@
-import { wp, hp } from "./dimension";
+import { wp, hp } from './dimension';
 
 /**
  * 设计宽
@@ -26,30 +26,32 @@ export const heightRate = (height: number) => {
   return hp((height / screenHeight) * 100);
 };
 
-export { default as _ } from "lodash";
+export { default as _ } from 'lodash';
 /**
  * 统一处理action
  * @param {*} type
  */
 export const createAction = (type: any) => (payload: any) => ({
   type,
-  payload
+  payload,
 });
 /**
  * 统一处理action
  * @param {*} type
  */
-export const createActions = (type: any) => (payload: any) => (
-  callback: any
-) => ({
+export const createActions = (type: any) => (payload: any) => (callback: any) => ({
   type,
   payload,
-  callback
+  callback,
 });
 
 /**
  * 网络检查
  * @param {*} response
  */
-export const check = (response: { code: number }) =>
-  response && response.code == 200;
+export const check = (response: { code: number }) => response && response.code == 200;
+
+/**
+ * MaterialCommunityIcons
+ */
+export { MaterialCommunityIcons as McIcons } from '@expo/vector-icons';

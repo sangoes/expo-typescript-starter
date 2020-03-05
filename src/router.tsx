@@ -1,15 +1,18 @@
+import { IAppState } from '@/interface/app';
+import HomePage from '@/pages/home';
+import MePage from '@/pages/me';
 import NavigationService from '@/utils/navigationService';
 import * as React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { connect } from 'react-redux';
-import { IAppState } from '@/interface/app';
-import HomePage from '@/pages/home';
+import { McIcons } from '@/utils';
 
 /**
- * 构建stack
+ * 构建 home stack
  */
-const MainNavigator = createStackNavigator(
+const HomeNavigator = createStackNavigator(
   {
     // 首页
     HomePage: {
@@ -22,8 +25,55 @@ const MainNavigator = createStackNavigator(
     defaultNavigationOptions: ({}) => ({}),
   },
 );
-// 构建容器
-const AppContainer = createAppContainer(MainNavigator);
+
+/**
+ * 构建 me stack
+ */
+const MeNavigator = createStackNavigator(
+  {
+    // 个人中心
+    MePage: {
+      screen: MePage,
+      navigationOptions: () => ({}),
+    },
+  },
+  {
+    initialRouteName: 'MePage',
+    defaultNavigationOptions: ({}) => ({}),
+  },
+);
+
+/**
+ * 构建Tab
+ */
+const TabNavigator = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeNavigator,
+      navigationOptions: {
+        title: '首页',
+        tabBarIcon: <McIcons name="home" size={24} />,
+      },
+    },
+    Me: {
+      screen: MeNavigator,
+      navigationOptions: {
+        title: '我',
+        tabBarIcon: <McIcons name="account" size={24} />,
+      },
+    },
+  },
+  {
+    initialRouteName: 'Home',
+    shifting: true,
+    barStyle: { backgroundColor: '#ffff' },
+  },
+);
+
+/**
+ * 构建容器
+ */
+const AppContainer = createAppContainer(TabNavigator);
 
 /**
  * @description 路由Props
