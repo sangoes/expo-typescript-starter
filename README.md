@@ -1,12 +1,12 @@
-# 尼克魔法教学机
+# expo typescript dva starter
 
-### 打包命令
+### package
 
     Android打包Apk:expo build:android -t apk
 
-#### 广播，接口，回调等方法来实现发送和接受通知以及通信
+#### listener
 
-    DeviceEventEmitter.emit('left', '发送了个通知');
+    DeviceEventEmitter.emit('left', 'msg');
 
     componentDidMount() {
         this.deEmitter = DeviceEventEmitter.addListener('left', (a) => {
@@ -20,5 +20,5 @@
 
 ### TODO
 
-    1.升级react-native-gesture-handler react-navigation react-navigation-stack (版本冲突报错找不到stack )
+    1. upgarade react-native-gesture-handler react-navigation react-navigation-stack (版本冲突报错找不到stack )
     2.yarn web 找不到@/
