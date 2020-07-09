@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from '@/styles/me';
-import { Button, Text } from 'react-native-paper';
+import { Button } from '@ant-design/react-native';
 
 export interface IMePageProps {}
 
@@ -25,7 +25,7 @@ export default class MePage extends React.Component<IMePageProps, IMePageState> 
     return (
       <View style={styles.container}>
         <Text>me view</Text>
-        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
+        <Button type="primary" onPress={() => console.log('Pressed')}>
           Press me
         </Button>
       </View>

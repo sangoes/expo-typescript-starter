@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
     plugins: [
@@ -17,12 +17,11 @@ module.exports = function(api) {
           ],
         },
       ],
+      ['import', { libraryName: '@ant-design/react-native' }],
     ],
     presets: ['babel-preset-expo'],
     env: {
-      production: {
-        plugins: ['react-native-paper/babel'],
-      },
+      production: {},
     },
   };
 };

@@ -1,8 +1,7 @@
-import React from 'react';
-import { Provider, connect } from 'react-redux';
-import { Reducer, Action, ReducersMapObject, Dispatch } from 'redux';
 import createLoading from 'dva-loading';
-import { DefaultTheme, Provider as PaperProvider, configureFonts } from 'react-native-paper';
+import React from 'react';
+import { connect, Provider } from 'react-redux';
+import { Action, Dispatch, Reducer, ReducersMapObject } from 'redux';
 
 let { create } = require('dva-core');
 export { connect };
@@ -61,42 +60,6 @@ export interface Options {
 }
 
 /**
- * 字体配置
- */
-const fontConfig: any = {
-  default: {
-    regular: {
-      fontFamily: 'sans-serif',
-      fontWeight: 'normal',
-    },
-    medium: {
-      fontFamily: 'sans-serif-medium',
-      fontWeight: 'normal',
-    },
-    light: {
-      fontFamily: 'sans-serif-light',
-      fontWeight: 'normal',
-    },
-    thin: {
-      fontFamily: 'sans-serif-thin',
-      fontWeight: 'normal',
-    },
-  },
-};
-
-/**
- * 主题
- */
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#f1c40f',
-  },
-  fonts: configureFonts(fontConfig),
-};
-
-/**
  * @description dva
  * @author jerrychir
  * @param {type} options
@@ -110,11 +73,7 @@ export function dva(options: Options) {
   // global.registered = true;
   app.start();
   const store = app._store;
-  app.start = (container: any) => () => (
-    <Provider store={store}>
-      <PaperProvider theme={theme}>{container}</PaperProvider>
-    </Provider>
-  );
+  app.start = (container: any) => () => <Provider store={store}>{container}</Provider>;
   app.getStore = () => store;
   return app;
 }
