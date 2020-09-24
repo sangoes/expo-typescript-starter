@@ -12,16 +12,17 @@ module.exports = function (api) {
             },
             {
               rootPathSuffix: './assets',
-              rootPathPrefix: '@assets/',
+              rootPathPrefix: '@/assets/',
             },
           ],
         },
       ],
-      ['import', { libraryName: '@ant-design/react-native' }],
     ],
     presets: ['babel-preset-expo'],
     env: {
-      production: {},
+      production: {
+        plugins: ['react-native-paper/babel'],
+      },
     },
   };
 };

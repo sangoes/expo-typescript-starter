@@ -8,7 +8,7 @@
  */
 
 // packages
-import {Dimensions, PixelRatio} from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
 
 // Retrieve initial screen's width
 let screenWidth = Dimensions.get('window').width;
@@ -56,7 +56,7 @@ const heightPercentageToDP = (heightPercent: any) => {
  *                      invoke setState method and trigger screen rerender (this.setState()).
  */
 const listenOrientationChange = (that: any) => {
-  Dimensions.addEventListener('change', newDimensions => {
+  Dimensions.addEventListener('change', (newDimensions) => {
     // Retrieve and save new dimensions
     screenWidth = newDimensions.window.width;
     screenHeight = newDimensions.window.height;

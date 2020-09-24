@@ -31,7 +31,7 @@ export { default as _ } from 'lodash';
  * 统一处理action
  * @param {*} type
  */
-export const createAction = (type: any) => (payload: any) => ({
+export const createAction = (type: any) => (payload?: any) => ({
   type,
   payload,
 });
@@ -39,10 +39,23 @@ export const createAction = (type: any) => (payload: any) => ({
  * 统一处理action
  * @param {*} type
  */
-export const createActions = (type: any) => (payload: any) => (callback: any) => ({
+export const createActions = (type: any) => (payload?: any) => (callback?: any) => ({
   type,
   payload,
   callback,
+});
+
+/**
+ * 统一处理action
+ * @param {*} type
+ */
+export const createActioned = (type: any) => (payload?: any) => (callback?: any) => (
+  failCallback?: any,
+) => ({
+  type,
+  payload,
+  callback,
+  failCallback,
 });
 
 /**

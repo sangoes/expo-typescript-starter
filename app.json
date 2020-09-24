@@ -1,34 +1,26 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "expo-typescript-starter",
     "slug": "expo-typescript-starter",
-    "privacy": "public",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
+    "scheme": "expo",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.sangoes.expo"
+      "supportsTablet": true
     },
-    "android": {
-      "package": "com.sangoes.expo"
-    },
-    "description": "expo typescript starter"
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    }
   }
 }
