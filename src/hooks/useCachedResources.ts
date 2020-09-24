@@ -1,8 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
+/**
+ * @description load cache
+ * @author jerry.c
+ * @date 2020-09-24
+ * @export
+ * @returns
+ */
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
@@ -14,7 +21,7 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          ...Ionicons.font,
+          ...MaterialCommunityIcons.font,
           // 'space-mono': require('../../../assets/fonts/SpaceMono-Regular.ttf'),
         });
       } catch (e) {
