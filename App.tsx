@@ -7,7 +7,8 @@ import models from './src/models/index';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import * as Colors from '@/styles/color';
+import { Provider as AntProvider } from '@ant-design/react-native';
 
 /**
  * dva
@@ -20,21 +21,12 @@ const dvaApp: any = dva.createApp({
 const store = dvaApp.getStore();
 
 /**
- * Theme
- */
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'tomato',
-    accent: 'yellow',
-  },
-};
-
-/**
  * App Entry
  */
 const App = () => {
+  // state
+  const [theme, setTheme] = React.useState({});
+
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -42,14 +34,14 @@ const App = () => {
     return null;
   } else {
     return (
-      <Provider store={store}>
-        <PaperProvider theme={theme}>
+      <AntProvider theme={theme}>
+        <Provider store={store}>
           <SafeAreaProvider>
             <Navigation colorScheme={colorScheme} />
             <StatusBar />
           </SafeAreaProvider>
-        </PaperProvider>
-      </Provider>
+        </Provider>
+      </AntProvider>
     );
   }
 };

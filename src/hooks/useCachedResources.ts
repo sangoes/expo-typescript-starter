@@ -18,11 +18,11 @@ export default function useCachedResources() {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
-
         // Load fonts
         await Font.loadAsync({
           ...MaterialCommunityIcons.font,
-          // 'space-mono': require('../../../assets/fonts/SpaceMono-Regular.ttf'),
+          antoutline: require('@ant-design/icons-react-native/fonts/antoutline.ttf'),
+          antfill: require('@ant-design/icons-react-native/fonts/antfill.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -32,7 +32,7 @@ export default function useCachedResources() {
         SplashScreen.hideAsync();
       }
     }
-
+    // loading
     loadResourcesAndDataAsync();
   }, []);
 
