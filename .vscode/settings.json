@@ -7,6 +7,7 @@
         "deepmerge",
         "esnext",
         "immer",
+        "sizestr",
         "viewpager"
     ]
 }

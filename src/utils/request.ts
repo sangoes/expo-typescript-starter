@@ -1,7 +1,8 @@
-// import { TOKEN_SESSION } from '@/constants/app';
-import ErrorCode from '@/constants/ErrorCode';
+import { TOKEN_SESSION } from '@/constants/app';
+import errorCode from '@/constants/errorCode';
 import { Toast } from '@ant-design/react-native';
 import axios from 'axios';
+import Storage from './storage';
 
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -20,10 +21,10 @@ axios.defaults.validateStatus = (status) => {
 axios.interceptors.request.use(
   async (config) => {
     // store token
-    // const storeToken = await Storage.getItem(TOKEN_SESSION);
-    // if (storeToken) {
-    //   config.headers['Token'] = storeToken;
-    // }
+    const storeToken = await Storage.getItem(TOKEN_SESSION);
+    if (storeToken) {
+      config.headers['Token'] = storeToken;
+    }
 
     // 其他操作
     return config;
@@ -37,15 +38,15 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   async (response) => {
     // 返回码
-    const status = response.data.status || response.data.code || response.status;
-    const message = response.data.msg || response.data.message || ErrorCode[status];
+    const status: any = response.data.status || response.data.code || response.status;
+    const message = response.data.msg || response.data.message || errorCode[status];
     // 登录
     if (status === -401) {
       Toast.info(message, Toast.SHORT);
       // 登录页
       // NavigationService.navigate('Login');
       // 清除token
-      // Storage.removeItem(TOKEN_SESSION);
+      Storage.removeItem(TOKEN_SESSION);
       return;
     }
     if (status !== 200) {
