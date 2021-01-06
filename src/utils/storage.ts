@@ -1,5 +1,6 @@
 import { aesDecode, aesEncode } from './tools';
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  *  提前3分钟过期token
