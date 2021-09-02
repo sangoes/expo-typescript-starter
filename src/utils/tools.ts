@@ -1,6 +1,6 @@
-import { AES_PRIVATE_KEY } from '@/constants/app';
-import _ from 'lodash';
-import CryptoJS from 'crypto-js';
+import { AES_PRIVATE_KEY } from "@/constants/app";
+import _ from "lodash";
+import CryptoJS from "crypto-js";
 
 /**
  * 判断对象是否为空
@@ -21,15 +21,15 @@ export const isEmptyObject = (obj: any) => {
 export const isEmpty = (value: any) => {
   if (
     value == null ||
-    value == '' ||
-    value == 'undefined' ||
+    value == "" ||
+    value == "undefined" ||
     value == undefined ||
-    value == 'null'
+    value == "null"
   ) {
     return true;
   } else {
-    value = value.replace(/\s/g, '');
-    if (value == '') {
+    value = value.replace(/\s/g, "");
+    if (value == "") {
       return true;
     }
     return false;
@@ -57,7 +57,7 @@ export const aesEncode = (message: any) => {
  * @param cipherMessage 密文
  */
 export const aesDecode = (cipherMessage?: any) => {
-  let msg = CryptoJS.enc.Hex.parse(cipherMessage);
+  let msg: any = CryptoJS.enc.Hex.parse(cipherMessage);
   const key = CryptoJS.enc.Utf8.parse(AES_PRIVATE_KEY);
   msg = CryptoJS.enc.Base64.stringify(msg);
   const decode = CryptoJS.AES.decrypt(msg, key, {
@@ -95,7 +95,8 @@ export const Base64Decode = (encodedMessage: string) => {
 /**
  * 网站表达式
  */
-const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
+const reg =
+  /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
 
 /**
  * 是否为网址
@@ -108,25 +109,25 @@ export const isUrl = (path: string): boolean => reg.test(path);
  * @param limit
  */
 export const convertSize = (limit: number) => {
-  let size = '';
+  let size = "";
   if (limit < 0.1 * 1024) {
     //如果小于0.1KB转化成B
-    size = limit.toFixed(2) + 'B';
+    size = limit.toFixed(2) + "B";
   } else if (limit < 0.1 * 1024 * 1024) {
     //如果小于0.1MB转化成KB
-    size = (limit / 1024).toFixed(2) + 'KB';
+    size = (limit / 1024).toFixed(2) + "KB";
   } else if (limit < 0.1 * 1024 * 1024 * 1024) {
     //如果小于0.1GB转化成MB
-    size = (limit / (1024 * 1024)).toFixed(2) + 'MB';
+    size = (limit / (1024 * 1024)).toFixed(2) + "MB";
   } else {
     //其他转化成GB
-    size = (limit / (1024 * 1024 * 1024)).toFixed(2) + 'GB';
+    size = (limit / (1024 * 1024 * 1024)).toFixed(2) + "GB";
   }
 
-  var sizestr = size + '';
-  var len = sizestr.indexOf('.');
+  var sizestr = size + "";
+  var len = sizestr.indexOf(".");
   var dec = sizestr.substr(len + 1, 2);
-  if (dec == '00') {
+  if (dec == "00") {
     //当小数点后为00时 去掉小数部分
     return sizestr.substring(0, len) + sizestr.substr(len + 3, 2);
   }
@@ -140,7 +141,7 @@ export const convertSize = (limit: number) => {
  */
 export const ellipsisString = (text: string, limit = 8) => {
   if (text.length > limit) {
-    return text.substring(0, limit) + '....';
+    return text.substring(0, limit) + "....";
   }
   return text;
 };

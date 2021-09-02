@@ -1,49 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
-import dva from './src/models/dva';
-import models from './src/models/index';
-import useCachedResources from './src/hooks/useCachedResources';
-import useColorScheme from './src/hooks/useColorScheme';
-import Navigation from './src/navigation';
-import * as Colors from '@/styles/color';
-import { Provider as AntProvider } from '@ant-design/react-native';
+import Navigation from "@/navigation";
+import { store } from "@/redux/store";
+import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider } from "@ui-kitten/components";
 
 /**
- * dva
- */
-const dvaApp: any = dva.createApp({
-  initialState: {},
-  models: models,
-});
-
-const store = dvaApp.getStore();
-
-/**
- * App Entry
+ * the app entry
+ * @returns
  */
 const App = () => {
-  // state
-  const [theme, setTheme] = React.useState({});
-
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <AntProvider theme={theme}>
-        <Provider store={store}>
-          <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </SafeAreaProvider>
-        </Provider>
-      </AntProvider>
-    );
-  }
+  return (
+    <Provider store={store}>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <SafeAreaProvider>
+          <Navigation />
+          {/* <Navigation colorScheme={colorScheme} /> */}
+          {/* <StatusBar /> */}
+        </SafeAreaProvider>
+      </ApplicationProvider>
+    </Provider>
+  );
 };
 
 export default App;

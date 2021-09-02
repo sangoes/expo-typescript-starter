@@ -2,19 +2,19 @@
  *
  * Copyright (c) 2018
  *
- * @author jerrychir
+ * @author jerry.c
  * @date 2018/7/12 3:53 PM
  *
  */
 
 // packages
-import { Dimensions, PixelRatio, useWindowDimensions } from 'react-native';
+import { Dimensions, PixelRatio, useWindowDimensions } from "react-native";
 
 // Retrieve initial screen's width
-let screenWidth = Dimensions.get('window').width;
+let screenWidth = Dimensions.get("window").width;
 
 // Retrieve initial screen's height
-let screenHeight = Dimensions.get('window').height;
+let screenHeight = Dimensions.get("window").height;
 
 /**
  * Converts provided width percentage to independent pixel (dp).
@@ -56,14 +56,14 @@ const heightPercentageToDP = (heightPercent: any) => {
  *                      invoke setState method and trigger screen rerender (this.setState()).
  */
 const listenOrientationChange = (that: any) => {
-  Dimensions.addEventListener('change', (newDimensions) => {
+  Dimensions.addEventListener("change", (newDimensions) => {
     // Retrieve and save new dimensions
     screenWidth = newDimensions.window.width;
     screenHeight = newDimensions.window.height;
 
     // Trigger screen's rerender with a state update of the orientation variable
     that.setState({
-      orientation: screenWidth < screenHeight ? 'portrait' : 'landscape',
+      orientation: screenWidth < screenHeight ? "portrait" : "landscape",
     });
   });
 };
@@ -75,7 +75,7 @@ const listenOrientationChange = (that: any) => {
  * avoid adding new listeners every time the same component is re-mounted.
  */
 const removeOrientationListener = () => {
-  Dimensions.removeEventListener('change', () => {});
+  Dimensions.removeEventListener("change", () => {});
 };
 
 export {

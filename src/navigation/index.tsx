@@ -1,34 +1,51 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
-import NotFoundScreen from '@/screens/NotFoundScreen';
-import { RootStackParamList } from '@/types';
-import BottomTabNavigator from './BottomTabNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import BottomTabNavigator from "./tab";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import NotFoundScreen from "@/screens/notfound";
+import LoginPage from "@/screens/auth/login";
 
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+const Tab = createBottomTabNavigator();
+
+const tabBarOptions = {
+  showLabel: false,
+  activeTintColor: "#9381ff",
+  style: {
+    height: "10%",
+  },
+};
+
+const Navigation = () => {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer>
       <RootNavigator />
     </NavigationContainer>
   );
-}
+};
 
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
-const Stack = createStackNavigator<RootStackParamList>();
+export default Navigation;
 
-function RootNavigator() {
+const Stack = createNativeStackNavigator();
+
+const RootNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+        name="NotFound"
+        component={NotFoundScreen}
+        options={{ title: "Oops!", presentation: "modal" }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginPage}
+        options={{
+          title: "Oops!",
+          headerShown: true,
+          // presentation: "formSheet",
+        }}
+      />
     </Stack.Navigator>
   );
-}
+};
